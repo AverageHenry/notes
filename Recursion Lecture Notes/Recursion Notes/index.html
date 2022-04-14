@@ -1,0 +1,1185 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
+    
+    
+      
+        <title>Recursion Lecture Notes - obsidian-mkdocs template</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.120efc48.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#recursion-lecture-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="obsidian-mkdocs template" class="md-header__button md-logo" aria-label="obsidian-mkdocs template" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            obsidian-mkdocs template
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Recursion Lecture Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="obsidian-mkdocs template" class="md-nav__button md-logo" aria-label="obsidian-mkdocs template" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    obsidian-mkdocs template
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Obsidian Notes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Recursion Foundations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recursion Foundations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Recursion Foundations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Recursion%20Foundations/Combinations/" class="md-nav__link">
+        Combinations - C(n, k)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Recursion%20Foundations/Combinatorial%20Enumeration%20Binary%20Strings/" class="md-nav__link">
+        Combinatorial Enumeration Binary Strings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Recursion%20Foundations/Printing%20All%20Permutations/" class="md-nav__link">
+        Printing All Permutations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Recursion%20Foundations/Printing%20Subsets/" class="md-nav__link">
+        Printing Subsets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Recursion%20Foundations/Recursion%20as%20a%20Lazy%20Manager%27s%20Strategy/" class="md-nav__link">
+        Recursion as a Lazy Manager's Strategy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Recursion%20Foundations/Recursive%20Mathematical%20Functions%20-%20Factorials%20for%20Permutations/" class="md-nav__link">
+        Recursive Mathematical Functions - Factorials for Permutations
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Recursion Lecture Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recursion Lecture Notes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Recursion Lecture Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Recursion Lecture Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Recursion Lecture Notes
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#agenda" class="md-nav__link">
+    Agenda
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exhaustive-enumeration" class="md-nav__link">
+    Exhaustive Enumeration
+  </a>
+  
+    <nav class="md-nav" aria-label="Exhaustive Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#given-a-set-of-n-objects-we" class="md-nav__link">
+    Given a set of n objects, we:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-many-permutaions-are-possible-for-a-set-of-n-distinct-objects" class="md-nav__link">
+    How many permutaions are possible for a set of n distinct objects?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-many-combinations-are-possible-for-a-set-of-n-distinct-objects" class="md-nav__link">
+    How many combinations are possible for a set of n distinct objects?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-template" class="md-nav__link">
+    General Template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-1-letter-case-permutation-wwwgooglecomleetcode-784" class="md-nav__link">
+    Question 1: Letter Case Permutation ([[www.google.com|Leetcode #784]])
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Letter Case Permutation ([[www.google.com|Leetcode #784]])">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentinterview-kickstart-notesrecursion-lecture-notesimagesletter_case_permutationspngsolution-using-a-mutable-slate" class="md-nav__link">
+    [[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/letter_case_permutations.png|Solution using a mutable slate]]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-complexity-o-2n-x-n" class="md-nav__link">
+    Time Complexity: O (2n x n)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#space-complexity-o-n" class="md-nav__link">
+    Space Complexity: O (n)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-2-subsets-no-duplicates" class="md-nav__link">
+    Question 2: Subsets - No Duplicates
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Subsets - No Duplicates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentinterview-kickstart-notesrecursion-lecture-notesimagesgenerate_subsets_no_repetitionpngsolution-using-mutable-slate" class="md-nav__link">
+    [[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/generate_subsets_no_repetition.png|Solution using mutable slate]]
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-3-permutations-no-repetition" class="md-nav__link">
+    Question 3: Permutations - No Repetition
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Permutations - No Repetition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentinterview-kickstart-notesrecursion-lecture-notesimagespermutations_no_repetitionspngsolution-using-a-mutable-slate" class="md-nav__link">
+    [[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/permutations_no_repetitions.png|Solution using a mutable slate]]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-4-permutations-ii-with-repetition" class="md-nav__link">
+    Question 4: Permutations II - With Repetition
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Permutations II - With Repetition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentinterview-kickstart-notesrecursion-lecture-notesimagespermutations_with_repetitionpngsolution" class="md-nav__link">
+    [[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/permutations_with_repetition.png|Solution:]]
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-5-subsets-ii-with-repetition" class="md-nav__link">
+    Question 5: Subsets II - With Repetition
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 5: Subsets II - With Repetition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentinterview-kickstart-notesrecursion-lecture-notesimagessubsets_with_repetitionpngsolution" class="md-nav__link">
+    [[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/subsets_with_repetition.png|Solution]]
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backtracking" class="md-nav__link">
+    Backtracking
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Sorting Foundations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Sorting Foundations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Sorting Foundations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sorting%20Foundations/Presorting/" class="md-nav__link">
+        Presorting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Sorting Algorithms
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Sorting Algorithms" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Sorting Algorithms
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sorting%20Foundations/Sorting%20Algorithms/Counting%20Sort/" class="md-nav__link">
+        Counting Sort
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sorting%20Foundations/Sorting%20Algorithms/Heapsort/" class="md-nav__link">
+        Heapsort
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Topic 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Topic 1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Topic 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic%201/Note%201/" class="md-nav__link">
+        Note 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic%201/Note%202/" class="md-nav__link">
+        Note 2
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Topic 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Topic 2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Topic 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic%202/Note%203/" class="md-nav__link">
+        Note 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic%202/Note%204/" class="md-nav__link">
+        Note 4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#agenda" class="md-nav__link">
+    Agenda
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exhaustive-enumeration" class="md-nav__link">
+    Exhaustive Enumeration
+  </a>
+  
+    <nav class="md-nav" aria-label="Exhaustive Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#given-a-set-of-n-objects-we" class="md-nav__link">
+    Given a set of n objects, we:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-many-permutaions-are-possible-for-a-set-of-n-distinct-objects" class="md-nav__link">
+    How many permutaions are possible for a set of n distinct objects?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-many-combinations-are-possible-for-a-set-of-n-distinct-objects" class="md-nav__link">
+    How many combinations are possible for a set of n distinct objects?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-template" class="md-nav__link">
+    General Template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-1-letter-case-permutation-wwwgooglecomleetcode-784" class="md-nav__link">
+    Question 1: Letter Case Permutation ([[www.google.com|Leetcode #784]])
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Letter Case Permutation ([[www.google.com|Leetcode #784]])">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentinterview-kickstart-notesrecursion-lecture-notesimagesletter_case_permutationspngsolution-using-a-mutable-slate" class="md-nav__link">
+    [[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/letter_case_permutations.png|Solution using a mutable slate]]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-complexity-o-2n-x-n" class="md-nav__link">
+    Time Complexity: O (2n x n)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#space-complexity-o-n" class="md-nav__link">
+    Space Complexity: O (n)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-2-subsets-no-duplicates" class="md-nav__link">
+    Question 2: Subsets - No Duplicates
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Subsets - No Duplicates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentinterview-kickstart-notesrecursion-lecture-notesimagesgenerate_subsets_no_repetitionpngsolution-using-mutable-slate" class="md-nav__link">
+    [[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/generate_subsets_no_repetition.png|Solution using mutable slate]]
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-3-permutations-no-repetition" class="md-nav__link">
+    Question 3: Permutations - No Repetition
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Permutations - No Repetition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentinterview-kickstart-notesrecursion-lecture-notesimagespermutations_no_repetitionspngsolution-using-a-mutable-slate" class="md-nav__link">
+    [[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/permutations_no_repetitions.png|Solution using a mutable slate]]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-4-permutations-ii-with-repetition" class="md-nav__link">
+    Question 4: Permutations II - With Repetition
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Permutations II - With Repetition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentinterview-kickstart-notesrecursion-lecture-notesimagespermutations_with_repetitionpngsolution" class="md-nav__link">
+    [[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/permutations_with_repetition.png|Solution:]]
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-5-subsets-ii-with-repetition" class="md-nav__link">
+    Question 5: Subsets II - With Repetition
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 5: Subsets II - With Repetition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentinterview-kickstart-notesrecursion-lecture-notesimagessubsets_with_repetitionpngsolution" class="md-nav__link">
+    [[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/subsets_with_repetition.png|Solution]]
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backtracking" class="md-nav__link">
+    Backtracking
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="recursion-lecture-notes">Recursion Lecture Notes<a class="headerlink" href="#recursion-lecture-notes" title="Permanent link">&para;</a></h1>
+<h3 id="agenda">Agenda<a class="headerlink" href="#agenda" title="Permanent link">&para;</a></h3>
+<p>Recursion is a bit of a misnomer for this lecture. 
+- Recursion has been seen in sorting: Insertion Sort, Merge Sort, and QuickSort.
+- Recursion has been seen in searching: Binary Search.
+- Binary Trees are an example of a recursive data structure. It is easy to write recursive algorithms on recursive data structures.
+- You will see examples of recursion in Graphs and Dynamic Programming.</p>
+<p>With that being said, <strong>recursion pervades the whole curriculum</strong>.</p>
+<ul>
+<li>The distinctive thing about this lecture is that the "class of problems" that are going to be seen are <strong>Combinatorial Enumeration</strong> problems, with <strong>Backtracking</strong> problems as well.</li>
+<li>Writing recursive code for these problems is more tricky.</li>
+</ul>
+<hr />
+<h2 id="exhaustive-enumeration">Exhaustive Enumeration<a class="headerlink" href="#exhaustive-enumeration" title="Permanent link">&para;</a></h2>
+<p>Exhaustive Enumeration requires a systematic enumeration/generation of all possible objects (permutation or combinations).</p>
+<p>This leads to a <strong>combinatorial explosion</strong> - exponential time complexity. Hence, this is <em>impractical for even moderate input sizes</em>.</p>
+<p>Still, for many problems of this nature, e cannot do better than this.</p>
+<h5 id="given-a-set-of-n-objects-we">Given a set of n objects, we:<a class="headerlink" href="#given-a-set-of-n-objects-we" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Sorted them ([[Sorting Overview]]).</li>
+<li>Will enumerate all permutations and combinations.</li>
+</ul>
+<h5 id="how-many-permutaions-are-possible-for-a-set-of-n-distinct-objects">How many permutaions are possible for a set of n distinct objects?<a class="headerlink" href="#how-many-permutaions-are-possible-for-a-set-of-n-distinct-objects" title="Permanent link">&para;</a></h5>
+<p>n! --&gt; n x (n - 1) x (n - 2) x ... x 1</p>
+<h5 id="how-many-combinations-are-possible-for-a-set-of-n-distinct-objects">How many combinations are possible for a set of n distinct objects?<a class="headerlink" href="#how-many-combinations-are-possible-for-a-set-of-n-distinct-objects" title="Permanent link">&para;</a></h5>
+<p>2<sup>n</sup> </p>
+<hr />
+<h3 id="general-template">General Template<a class="headerlink" href="#general-template" title="Permanent link">&para;</a></h3>
+<p>You have to fill in a series of blanks, and there is an exponential number of ways to do it.</p>
+<p>" <strong>  </strong>  <strong>  </strong>  <strong>  </strong> __"</p>
+<p>This series of blanks represent a combinatorial object (some permutation or combination).</p>
+<p>You proceed left to right, and as a lazy manager, only take responsibility for filling in the first blank. Delegate the rest of the work to your subordinates.</p>
+<p>Write up a general strategy used by any arbitrary worker in the heirarchy as a recursive function.</p>
+<p>This is what the general template will look like in code:</p>
+<pre><code class="language-python">def helper(partial_solution, subproblem_definition): # partial_solution is a &quot;slate&quot;
+    # Base Case: Leaf Worker
+    if subproblem_definition is empty:
+        # Partial solution is a complete P/C
+        Add the complete solution to the &quot;global bag&quot;
+        return
+    # Recursive Case: Interal Node Workers
+    else:
+        # Let c1, c2, c3... ck be the number of choices for filling into the leftmost blank
+        For each of those choices ci:
+            Add ci to the slate (append)
+            helper(enlarged_slate, smaller_subproblem)
+
+def overall(a_set_of_n_objects):
+    result = []
+    helper(blank_slate, complete_problem_of_size_n)
+    return result
+</code></pre>
+<h3 id="question-1-letter-case-permutation-wwwgooglecomleetcode-784">Question 1: Letter Case Permutation ([[www.google.com|Leetcode #784]])<a class="headerlink" href="#question-1-letter-case-permutation-wwwgooglecomleetcode-784" title="Permanent link">&para;</a></h3>
+<p>![[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/Pasted image 20220412000103.png]]</p>
+<h5 id="contentinterview-kickstart-notesrecursion-lecture-notesimagesletter_case_permutationspngsolution-using-a-mutable-slate">[[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/letter_case_permutations.png|Solution using a mutable slate]]<a class="headerlink" href="#contentinterview-kickstart-notesrecursion-lecture-notesimagesletter_case_permutationspngsolution-using-a-mutable-slate" title="Permanent link">&para;</a></h5>
+<h5 id="time-complexity-o-2n-x-n">Time Complexity: O (2<sup>n</sup> x n)<a class="headerlink" href="#time-complexity-o-2n-x-n" title="Permanent link">&para;</a></h5>
+<h5 id="space-complexity-o-n">Space Complexity: <strong>O (n)</strong><a class="headerlink" href="#space-complexity-o-n" title="Permanent link">&para;</a></h5>
+<h3 id="question-2-subsets-no-duplicates">Question 2: Subsets - No Duplicates<a class="headerlink" href="#question-2-subsets-no-duplicates" title="Permanent link">&para;</a></h3>
+<p>![[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/Pasted image 20220412010727.png]]</p>
+<h5 id="contentinterview-kickstart-notesrecursion-lecture-notesimagesgenerate_subsets_no_repetitionpngsolution-using-mutable-slate">[[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/generate_subsets_no_repetition.png|Solution using mutable slate]]<a class="headerlink" href="#contentinterview-kickstart-notesrecursion-lecture-notesimagesgenerate_subsets_no_repetitionpngsolution-using-mutable-slate" title="Permanent link">&para;</a></h5>
+<h3 id="question-3-permutations-no-repetition">Question 3: Permutations - No Repetition<a class="headerlink" href="#question-3-permutations-no-repetition" title="Permanent link">&para;</a></h3>
+<p>![[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/Pasted image 20220412110645.png]]</p>
+<h5 id="contentinterview-kickstart-notesrecursion-lecture-notesimagespermutations_no_repetitionspngsolution-using-a-mutable-slate">[[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/permutations_no_repetitions.png|Solution using a mutable slate]]<a class="headerlink" href="#contentinterview-kickstart-notesrecursion-lecture-notesimagespermutations_no_repetitionspngsolution-using-a-mutable-slate" title="Permanent link">&para;</a></h5>
+<p>Time Complexity: O (n! x n)
+Space Complexity: O (n! x n)</p>
+<h4 id="question-4-permutations-ii-with-repetition">Question 4: Permutations II - With Repetition<a class="headerlink" href="#question-4-permutations-ii-with-repetition" title="Permanent link">&para;</a></h4>
+<p>![[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/Pasted image 20220412130408.png]]</p>
+<h5 id="contentinterview-kickstart-notesrecursion-lecture-notesimagespermutations_with_repetitionpngsolution">[[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/permutations_with_repetition.png|Solution:]]<a class="headerlink" href="#contentinterview-kickstart-notesrecursion-lecture-notesimagespermutations_with_repetitionpngsolution" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Solution would be the same as Permutations I. The only difference is you add a hashtable/hashset to see if we have already processed a number. If so, we continue, if not, we proceed to make a recursive call and then add the number to our hashtable/hashset.</li>
+<li>Time Complexity: O (n! x n)</li>
+<li>Space Complexity: O (n! x n) --&gt; Keep in mind that in the worst case (all numbers are distinct), we store every number in the array into the hashtable at every level in our recursion tree, so that would take up n<sup>2</sup> space.</li>
+<li>NOTE: An alternative solution to this would be to sort the input beforehand and count the number of occurrences, then call the helper function based on the number of occurrences of the current number. We would then skip the duplicate values by passing <strong>i + count</strong> to the helper function. This approach would use less space, but take more time to run.</li>
+</ul>
+<h3 id="question-5-subsets-ii-with-repetition">Question 5: Subsets II - With Repetition<a class="headerlink" href="#question-5-subsets-ii-with-repetition" title="Permanent link">&para;</a></h3>
+<p>![[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/Pasted image 20220412141003.png]]</p>
+<h5 id="contentinterview-kickstart-notesrecursion-lecture-notesimagessubsets_with_repetitionpngsolution">[[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/subsets_with_repetition.png|Solution]]<a class="headerlink" href="#contentinterview-kickstart-notesrecursion-lecture-notesimagessubsets_with_repetitionpngsolution" title="Permanent link">&para;</a></h5>
+<hr />
+<h2 id="backtracking">Backtracking<a class="headerlink" href="#backtracking" title="Permanent link">&para;</a></h2>
+<p>When we say backtracking in this case, we mean <strong>returning back to the calling function</strong>.
+It is an algorithm design strategy for adding constraints in a combinatorial enumeration problem.</p>
+<p>Sometimes, we can evaluate the the partially constructed solutions to a problem:
+- If none of the ways to fill in the remaining blanks can lead to a solution (or if we can identify the one, single solution that will emerge), we do not need to work to fill in the remaining blanks.
+- Instead, we backtrack from that internal node, thus pruning away the subtree rooted at it. This can be considered a <strong>Constraint Filter</strong>. To implement this, all we have to do is add a [[Pasted image 20220412162853.png|Backtracking Case]] to our recursion template.
+- Though it leads to an exponential improvement in combinatorial search, the resulting time is not polynomial, but an "improved exponential time" (it is difficult to give an exact expression for the time complexity). It is best treated as a heuristic rather than something amenable to worst-case analysis.</p>
+<p>Check out this [[content/Interview Kickstart Notes/Recursion Lecture Notes/Images/Combinatorial Path.png|Combinatorial Path]]. It shows how cominatorial problems are built on top of one another.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../Recursion%20Foundations/Recursive%20Mathematical%20Functions%20-%20Factorials%20for%20Permutations/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Recursive Mathematical Functions - Factorials for Permutations" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Recursive Mathematical Functions - Factorials for Permutations
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../Sorting%20Foundations/Presorting/" class="md-footer__link md-footer__link--next" aria-label="Next: Presorting" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Presorting
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6e54b5cd.min.js"></script>
+      
+    
+  </body>
+</html>
