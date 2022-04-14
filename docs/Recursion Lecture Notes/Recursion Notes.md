@@ -23,7 +23,7 @@ This leads to a **combinatorial explosion** - exponential time complexity. Hence
 Still, for many problems of this nature, e cannot do better than this.
 
 ##### Given a set of n objects, we:
-- Sorted them ([[content/Interview Kickstart Notes/Sorting Foundations/_Sorting Overview|Sorting Foundations]]).
+- Sorted them ([[Sorting Overview]]).
 - Will enumerate all permutations and combinations.
 
 ##### How many permutaions are possible for a set of n distinct objects?
